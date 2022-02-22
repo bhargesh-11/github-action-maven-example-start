@@ -9,4 +9,4 @@ FROM openjdk:14-slim
 WORKDIR /home
 COPY --from=build /workspace/target/*jar-with-dependencies.jar /home/app.jar
 EXPOSE 6379
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-jar","app.jar","sleep 3600"]
