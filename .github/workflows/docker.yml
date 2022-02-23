@@ -25,9 +25,7 @@ jobs:
           images: |
             bhargesh/meta-action
           tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern=${{ github.run_number }}.${{ github.run_attempt }}
           flavor: |
             latest=true
 
@@ -52,8 +50,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - 
-        name: Git workflow context
-        run: echo "$GITHUB_CONTEXT"
-      - name: Output Run ID
-        run: echo ${{ github.run_id }} && echo ${{ github.run_number }}
+
