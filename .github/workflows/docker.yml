@@ -19,12 +19,14 @@ jobs:
         name: Docker meta
         id: meta
         uses: docker/metadata-action@v3
+        env:
+          minor: ${{ github.run_attempt }}
         with:
           # list of Docker images to use as base name for tags
           images: |
             bhargesh/meta-action
           tags: |
-            type=semver,pattern={{version}},value=v${{ github.run_number }}.$((${{ github.run_attempt }}-1))
+            type=semver,pattern={{version}},value=v${{ github.run_number }}.$(($minor-1))
           flavor: |
             latest=true
 
