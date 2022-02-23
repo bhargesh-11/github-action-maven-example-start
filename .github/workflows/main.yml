@@ -1,5 +1,4 @@
-name: Maven CI/CD
-
+name: Docker
 on:
  push:
     branches: [ main ]
@@ -11,6 +10,8 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
     steps:
       -
         name: Checkout
@@ -54,3 +55,5 @@ jobs:
       - 
         name: Git workflow context
         run: echo "$GITHUB_CONTEXT"
+      - name: Output Run ID
+        run: echo ${{ github.run_id }} && echo ${{ github.run_number }}
