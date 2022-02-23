@@ -26,7 +26,7 @@ jobs:
           images: |
             bhargesh/meta-action
           tags: |
-            type=semver,pattern={{version}},value=v${{ github.run_number }}.$(($minor-1))
+            type=semver,pattern={{version}},value=v${{ github.run_number }}.$minor
           flavor: |
             latest=true
 
