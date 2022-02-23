@@ -1,4 +1,4 @@
-name: Docker
+name: Image
 on:
  push:
     branches: [ main ]
@@ -25,7 +25,7 @@ jobs:
           images: |
             bhargesh/meta-action
           tags: |
-            type=semver,pattern=${{ github.run_number }}.${{ github.run_attempt }}
+            type=semver,pattern={{version}},value=${{ github.run_number }}.${{ github.run_attempt }}
           flavor: |
             latest=true
 
