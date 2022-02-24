@@ -28,7 +28,7 @@ jobs:
       -
         name: Minor version
         run: |
-          $minor= $((${{ github.run_attempt }}-1))
+          $minor= echo $((${{ github.run_attempt }}-1))
           echo $minor
       -
         name: Build and push 
