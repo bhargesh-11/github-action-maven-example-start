@@ -27,6 +27,6 @@ jobs:
           
       - name: Set version number
         run: |
-          $version = "3.2."+$((4000 + ${{ github.run_number }}))+".0"
-          echo $version
+          echo $((100+${{ github.run_number }}))
+          
          
