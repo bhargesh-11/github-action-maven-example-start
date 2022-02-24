@@ -24,13 +24,11 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: |
-            ${{ secrets.DOCKER_REPO }}:latest
-            ${{ secrets.DOCKER_REPO }}:${{ github.run_number }}.${{ github.run_attempt }}
+          
+      - name: Set version number
+        run: |
+          $version = "3.2."+(4000+$($Env:GITHUB_RUN_NUMBER))+".0"
+          echo $version
+          echo "VERSION_NUMBER=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+
 
