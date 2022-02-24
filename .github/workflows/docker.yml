@@ -28,14 +28,14 @@ jobs:
       -
         name: Minor version
         run: |
-          $minor= echo $((${{ github.run_attempt }}-1))
+          echo $((${{ github.run_attempt }}-1))
           echo $minor
       -
         name: Build and push 
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name == 'pull_request' }}
           tags: |
             ${{ secrets.DOCKER_REPO }}:latest
             ${{ secrets.DOCKER_REPO }}:v${{ github.run_number }}
