@@ -26,7 +26,7 @@ jobs:
           images: |
             bhargesh/meta-action
           tags: |
-            type=semver,pattern={{version}},value=v1.0
+            type=semver,pattern={{version}},value=v1.0.0
           flavor: |
             latest=true
 
