@@ -16,7 +16,7 @@ jobs:
 
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
-    - run: cd target && ls -lrt
+      
     - run: mkdir staging && cp target/*.jar staging  
     - uses: actions/upload-artifact@v1
       with:
