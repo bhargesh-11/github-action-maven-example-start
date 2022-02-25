@@ -45,6 +45,5 @@ jobs:
     - name: Upload image
       uses: ishworkh/docker-image-artifact-upload@v1
       with:
-        image: |
-          "${{ secrets.DOCKER_REPO }}:v${{ github.run_number }}"
-          "${{ secrets.DOCKER_REPO }}:latest"
+        image: "${{ secrets.DOCKER_REPO }}:v${{ github.run_number }}"
+
