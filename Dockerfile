@@ -1,5 +1,5 @@
-FROM openjdk:14-slim
+FROM openjdk:11-slim
 WORKDIR /home
 COPY ./target/*jar-with-dependencies.jar /home/app.jar
 EXPOSE 6379
-ENTRYPOINT ["java","-jar","app.jar","sleep","3600"]
+ENTRYPOINT ["java","-jar","app.jar"]
