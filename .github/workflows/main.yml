@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   docker:
-    runs-on: runner2
+    runs-on: dind
 
     steps:
       -
