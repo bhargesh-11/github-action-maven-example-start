@@ -19,6 +19,6 @@ tar xzf ./actions-runner-linux-x64-2.288.1.tar.gz
 
 * Configure the runner
 
-* `start.sh` contains the script to configure the runner
-> The `ORGANIZATION` and `ACCESS_TOKEN` (GitHub personal access token) environment variables are used for requesting a runner registration token.
+> `start.sh` contains the script to configure the runner
+>  The `ORGANIZATION` and `ACCESS_TOKEN` (GitHub personal access token) environment variables are used for requesting a runner registration token.
 
