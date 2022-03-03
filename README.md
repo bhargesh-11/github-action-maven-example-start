@@ -13,6 +13,7 @@ tar xzf ./actions-runner-linux-x64-2.288.1.tar.gz
 ```
 > Update the `RUNNER_VERSION` variable with the latest version of the runner, which can be found [here](https://github.com/actions/runner/releases).
 
-#### **Base Docker Image**
+#### **Configure the runner**
 
-* ubuntu:18.04
+* `start.sh` contains the script our container will execute at boot time
+> The ORGANIZATION and ACCESS_TOKEN (GitHub personal access token) environment variables are used for requesting a runner registration token.
