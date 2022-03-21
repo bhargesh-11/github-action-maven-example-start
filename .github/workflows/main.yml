@@ -23,12 +23,32 @@ jobs:
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
       
-    - run: mkdir staging && cp target/*.jar staging  
+    - name: zip artifacts
+      run: |
+        mkdir staging && cp target/*.jar staging  
+        zip --junk-paths jar staging
     - uses: actions/upload-artifact@v1
       with:
         name: Package
         path: staging   
   
+    - name: Create GitHub release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+    
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: .
+        asset_name: site-v${{ github.run_number }}.zip
+        asset_content_type: application/zip
     
     - name: Login to DockerHub
       #if: github.event_name != 'pull_request'
