@@ -40,6 +40,8 @@ jobs:
       with:
         tag_name: ${{ github.run_number }}
         release_name: Release ${{ github.run_number }}
+
+    - run: echo $GITHUB_TOKEN
     
     - name: Upload release asset
       uses: actions/upload-release-asset@v1
