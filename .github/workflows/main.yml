@@ -24,7 +24,9 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: zip artifacts
-      run: mkdir staging && cp target/*.jar staging  
+      run: |
+        mkdir staging && cp target/*.jar staging  
+        zip -r maven.zip  staging/
     - uses: actions/upload-artifact@v1
       with:
         name: Package
@@ -45,7 +47,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-        asset_path: .
+        asset_path: ./maven.zip
         asset_name: site-v${{ github.run_number }}
         asset_content_type: application/zip
     
