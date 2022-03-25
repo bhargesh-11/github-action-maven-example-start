@@ -25,7 +25,7 @@ jobs:
       
     - name: zip artifacts
       run: |
-        mkdir staging && cp target/github-action-maven-tutorial-1.0-SNAPSHOT.jar staging  
+        mkdir staging && cp target/*.jar staging  
         ls -lrt staging
         zip -r maven.zip  staging/
     - uses: actions/upload-artifact@v1
@@ -52,7 +52,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-        asset_path: target/github-action-maven-tutorial-1.0-SNAPSHOT.jar #./maven.zip
+        asset_path: staging/* #target/github-action-maven-tutorial-1.0-SNAPSHOT.jar #./maven.zip
         asset_name: site-v${{ github.run_number }}.jar
         asset_content_type: application/java-archive
     
