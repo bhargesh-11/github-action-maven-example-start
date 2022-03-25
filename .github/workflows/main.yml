@@ -25,7 +25,7 @@ jobs:
       
     - name: zip artifacts
       run: |
-        mkdir staging && cp target/*.jar staging  
+        mkdir staging && cp target/github-action-maven-tutorial-1.0-SNAPSHOT.jar staging  
         zip -r maven.zip  staging/
     - uses: actions/upload-artifact@v1
       with:
@@ -51,8 +51,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-        asset_path: ./staging/github-action-maven-tutorial-1.0-SNAPSHOT.jar #./maven.zip
-        asset_name: site-v${{ github.run_number }}.zip
+        asset_path: ./staging/ #./maven.zip
+        asset_name: site-v${{ github.run_number }}.jar
         asset_content_type: application/jar
     
     - name: Login to DockerHub
