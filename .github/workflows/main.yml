@@ -52,9 +52,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-        asset_path: staging/github-action-maven-tutorial-1.0-SNAPSHOT.jar #./maven.zip
+        asset_path: staging/github-action-maven-tutorial-1.0-SNAPSHOT.jar
         asset_name: site-v${{ github.run_number }}.jar
         asset_content_type: application/java-archive
+        #asset_path: ./maven.zip
+        #asset_name: site-v${{ github.run_number }}..zip
+        #asset_content_type: application/zip
     
    # - name: Login to DockerHub
    #   #if: github.event_name != 'pull_request'
