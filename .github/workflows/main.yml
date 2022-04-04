@@ -28,6 +28,7 @@ jobs:
         mkdir staging && cp target/*.jar staging  
         ls -lrt staging
         zip -r maven.zip  staging/
+        
     - uses: actions/upload-artifact@v1
       with:
         name: Package
@@ -39,12 +40,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
-
-    - run: |
-        env
-        echo $GITHUB_TOKEN
+        tag_name: r-${{ github.run_number }}
+        release_name: Release-${{ github.run_number }}
     
     - name: Upload release asset
       uses: actions/upload-release-asset@v1
@@ -56,7 +53,7 @@ jobs:
         asset_name: site-v${{ github.run_number }}.jar
         asset_content_type: application/java-archive
         #asset_path: ./maven.zip
-        #asset_name: site-v${{ github.run_number }}..zip
+        #asset_name: site-v${{ github.run_number }}.zip
         #asset_content_type: application/zip
     
    # - name: Login to DockerHub
