@@ -1,4 +1,4 @@
-name: Docker-Main
+name: Ci
 
 on: workflow_dispatch
 
