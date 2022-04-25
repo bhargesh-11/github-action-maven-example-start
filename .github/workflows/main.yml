@@ -40,7 +40,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: r-${{ github.run_number }}
+        tag_name: r-${{ github.ref_name }}-${{ github.run_number }}
         release_name: Release-${{ github.ref_name }}-${{ github.run_number }}
     
     - name: Upload release asset
@@ -68,8 +68,18 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        #push: ${{ github.event_name != 'pull_request' }}
-        push: true
+        push: ${{ github.ref_name != 'master' }}
+        #push: true
+        tags: |
+          ${{ secrets.DOCKER_REPO }}:latest
+          bhargesh/runner:v${{ github.ref_name }}-${{ github.run_number }}
+
+    - name: Build and push 
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: ${{ github.ref_name == 'main' }}
+        #push: true
         tags: |
           ${{ secrets.DOCKER_REPO }}:latest
           ${{ secrets.DOCKER_REPO }}:v${{ github.ref_name }}-${{ github.run_number }}
