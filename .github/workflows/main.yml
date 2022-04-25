@@ -1,4 +1,4 @@
-name: Ci
+name: Docker-Main
 
 on: workflow_dispatch
 
@@ -41,7 +41,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: r-${{ github.run_number }}
-        release_name: Release-${{ github.run_number }}
+        release_name: Release-${{ github.ref_name }}-${{ github.run_number }}
     
     - name: Upload release asset
       uses: actions/upload-release-asset@v1
@@ -71,5 +71,4 @@ jobs:
         #push: ${{ github.event_name != 'pull_request' }}
         push: true
         tags: |
-          ${{ secrets.DOCKER_REPO }}:latest
-          ${{ secrets.DOCKER_REPO }}:v${{ github.run_number }}
+          bhargesh/runner:v${{ github.ref_name }}-${{ github.run_number }}
