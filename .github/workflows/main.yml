@@ -65,7 +65,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
           
     - name: Build and push master branch
-      if: github.ref_name == 'master'
+      if: ${{ github.ref_name == 'master' }}
       uses: docker/build-push-action@v2
       with:
         context: .
@@ -76,7 +76,7 @@ jobs:
           bhargesh/runner:v${{ github.ref_name }}-${{ github.run_number }}
           
     - name: Build and push main branch
-      if: github.ref_name == 'main'
+      if: ${{ github.ref_name == 'main' }}
       uses: docker/build-push-action@v2
       with:
         context: .
