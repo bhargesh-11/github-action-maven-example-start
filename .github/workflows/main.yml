@@ -5,8 +5,8 @@ on: workflow_dispatch
 jobs:
   build_and_push:
 
-    #runs-on: ubuntu-latest
-    runs-on: [metagen, bhargesh]
+    runs-on: ubuntu-latest
+    #runs-on: [metagen, bhargesh]
 
     steps:
     - uses: actions/checkout@v2
