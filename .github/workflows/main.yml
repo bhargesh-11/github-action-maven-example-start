@@ -76,6 +76,7 @@ jobs:
           bhargesh/runner:latest
           bhargesh/runner:v${{ github.ref_name }}-${{ github.run_number }}
 
+####################
     #- name: Build and push main branch
     #  if: github.ref_name == 'main'
     #  uses: docker/build-push-action@v2
