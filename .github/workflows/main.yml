@@ -1,4 +1,4 @@
-name: Docker-Master
+name: Docker-dev
 
 on: workflow_dispatch
 
