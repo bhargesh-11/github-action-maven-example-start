@@ -5,6 +5,8 @@ on: workflow_dispatch
 jobs:
   build_and_push:
 
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     #runs-on: [metagen, bhargesh]
 
